@@ -1,0 +1,128 @@
+{% load staticfiles cms_tags %}
+<script>
+	
+	let currentList;
+	var text = '{ "test" : [' ;
+
+	var jsonData = [];
+	$.ajax({
+		url: bbyn_rest_url+"getbranchlocations/",
+		async:false,
+		success: function( data ) {
+			$.each(data, function(index, object){
+					murabahaData = object;
+					jj = JSON.stringify(murabahaData);
+
+					jsonData.push(jj);
+			});
+			currentList = jsonData;
+			console.log(jsonData);
+		}
+	});
+
+</script>
+
+<br><br>
+<h2><b>{{instance.title}}</b></h2>
+<h4 class='light-grey'>
+    {{instance.sub_title}}
+</h4>
+
+</span>
+
+
+<link rel="stylesheet" href="//releases.flowplayer.org/7.0.4/commercial/skin/skin.css">
+    <style>
+
+   </style>
+   <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="//releases.flowplayer.org/7.0.4/commercial/flowplayer.min.js"></script>
+  <script src="//releases.flowplayer.org/hlsjs/flowplayer.hlsjs.min.js"></script> 
+  <script>
+  flowplayer(function (api) {
+    api.on("load", function (e, api, video) {
+      $("#vinfo").text(api.engine.engineName + " engine playing " + video.type);
+    }); });
+  </script>
+
+<div class="flowplayer fixed-controls no-toggle no-time play-button obj"
+      style="    width: 85.5%;
+    height: 80%;
+    margin-left: 7.2%;
+    margin-top: 6%;
+    z-index: 1000;" data-key="$812975748999788" data-live="true" data-share="false" data-ratio="0.5625"  data-logo="">
+      <video autoplay="true" stretch="true">
+
+         <source type="application/x-mpegurl" src="http://127.0.0.1:8080/static/youtubeapp/playlist_2.m3u8">
+      </video>   
+   </div>
+
+
+
+
+
+<ul tab_number>
+	<li onclick="filteredList(this,'')" selected>All</li>
+	<li onclick="filteredList(this,'bankBuilding')">Branches</li>
+	<li onclick="filteredList(this,'corpBuilding')">Corporate branch</li>
+	<li onclick="filteredList(this,'direct')">Boubyan direct</li>
+	<li onclick="filteredList(this,'atm')">ATM</li>
+	<li onclick="filteredList(this,'cardIssuance')" >Card Issuance Machines</li>
+</ul>
+<rbx-flex  class="locations-search-bar mb-4 space-evenly">
+	<img src="{% static 'boubyan/images/search.svg' %}" class="ms-1 width-percentage" style="--width:2.6%">
+	<input type="text" class="styleless-input width-percentage font-14 dark-grey" style="--width:90%" id="location_suggestions" placeholder="Search for area, branches, atms etc.">
+</rbx-flex >
+<rbx-flex class="flex-start overflow-hidden" >
+	<rbx-flex-item class="collapsible font-14 beige-background p-3 pe-0 overflow-hidden" id="results" style="height:750px" >
+		<!-- Horizontal sliders container start-->
+		<rbx-flex class="slider-container" id="slider-container" >
+			<!-- This is the first slider -->
+			<rbx-flex-item class="all slider locations-list">
+				Showing all Boubyan locations
+				
+				<rbx-flex class="locations-results mt-2 columns-with-scroll overflow-auto" id="currentList">
+				</rbx-flex>
+					
+			</rbx-flex-item>
+			<!-- End of first slider -->
+
+			<!-- This is the second slider -->
+			<rbx-flex-item class="all slider">
+				<span onclick="slideTo('slider1')">< Back to all locations</span>
+				<rbx-flex class="locations-results mt-2 columns-with-scroll" >
+					<rbx-flex-item class="white-background width-percentage mb-2" style="width: 90%;" id="single_details">
+						
+					</rbx-flex-item>
+				</rbx-flex>
+			</rbx-flex-item>
+			<!-- End of second slider -->
+
+		</rbx-flex>
+		<!-- Horizontal sliders container end -->
+
+	</rbx-flex-item>
+
+	<rbx-flex-item id="map" style="position:relative">
+		<img id="results-toggle" src="{% static 'boubyan/images/button-with-arrow.svg' %}" class="results-toggle" >
+		<div id="google-map" class="map-width"></div>
+		</iframe>
+	</rbx-flex-item>
+</rbx-flex>
+
+<script>
+
+</script>
+
+
+
+<script src="{% static 'bbyn_locations/locations.js' %}?v=1"></script>
+<script>
+	updateCurrentListInHTML();
+	/*initiate the autocomplete function on the "myInput" element, and pass along the branches array as possible autocomplete values:*/
+	autocomplete(document.getElementById("location_suggestions"), currentList);
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBF-bihKTFZ3BOg3E3GmZfm1fS7MtrklBE&callback=initMap">
+</script>
+
+
