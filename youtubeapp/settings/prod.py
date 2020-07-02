@@ -17,6 +17,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ENV_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))) + '/env'
 
 
 # Quick-start development settings - unsuitable for production
@@ -62,15 +63,22 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
-STATIC_ROOT = os.path.join(DATA_DIR, 'static')
-print(STATIC_ROOT)
+MEDIA_ROOT = os.path.join(DATA_DIR, '../media')
+STATIC_ROOT = os.path.join(DATA_DIR, '../static')
+
 print('STATIC_ROOT')
+print(STATIC_ROOT)
 print('BASE BASE')
-print(os.path.join(BASE_DIR, 'youtubeapp', 'static'))
+print(BASE_DIR)
+print('DATA BASE')
+print(DATA_DIR)
+print('ENV BASE')
+print(ENV_DIR)
+
 STATICFILES_DIRS = ([
-os.path.join(BASE_DIR, 'youtubeapp', 'static')]
-)
+os.path.join(BASE_DIR, 'static'),
+os.path.join(ENV_DIR, 'lib/python3.7/site-packages/django/contrib/admin/static/'),
+])
 SITE_ID = 1
 
 
