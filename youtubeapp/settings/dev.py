@@ -62,20 +62,20 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
-STATIC_ROOT = os.path.join(DATA_DIR, 'static')
+MEDIA_ROOT = os.path.join(DATA_DIR, '../media')
+STATIC_ROOT = os.path.join(DATA_DIR, '../static')
 
-print('STATIC_ROOT')
-print(STATIC_ROOT)
-print('BASE BASE')
-print(BASE_DIR)
-print('DATA BASE')
-print(DATA_DIR)
-print('ENV BASE')
-print(ENV_DIR)
+# print('STATIC_ROOT')
+# print(STATIC_ROOT)
+# print('BASE BASE')
+# print(BASE_DIR)
+# print('DATA BASE')
+# print(DATA_DIR)
+# print('ENV BASE')
+# print(ENV_DIR)
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'youtubeapp', 'static'),
+    os.path.join(BASE_DIR, 'static'),
     os.path.join(ENV_DIR, 'lib/python3.7/site-packages/django/contrib/admin/static/'),
     
 )

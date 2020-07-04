@@ -65,16 +65,10 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(DATA_DIR, '../media')
 STATIC_ROOT = os.path.join(DATA_DIR, '../static')
-
-print('STATIC_ROOT')
 print(STATIC_ROOT)
+print('STATIC_ROOT')
 print('BASE BASE')
-print(BASE_DIR)
-print('DATA BASE')
-print(DATA_DIR)
-print('ENV BASE')
-print(ENV_DIR)
-
+print(os.path.join(BASE_DIR, 'static'))
 STATICFILES_DIRS = ([
 os.path.join(BASE_DIR, 'static'),
 os.path.join(ENV_DIR, 'lib/python3.7/site-packages/django/contrib/admin/static/'),
@@ -200,14 +194,28 @@ DATABASES = {
     #    'USER': ''
     #}
 
+
+    # 	'default': {
+    #     'NAME': 'youtube_db',
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'USER': 'root',
+    #     'PASSWORD': 'P@ssw0rd',
+    #     'OPTIONS': {
+    #       'autocommit': True,
+    #     },
+    # }
+
 	'default': {
-        'NAME': 'youtube_db',
+      	'HOST': '50.62.209.199',    
+    	'PORT': '3306',
+	    'NAME': 'ph14265523286_youtube',
         'ENGINE': 'django.db.backends.mysql',
-        'USER': 'root',
-        'PASSWORD': 'P@ssw0rd',
+        'USER': 'ph14265523286',
+        'PASSWORD': 'Gsrt967',
         'OPTIONS': {
-          'autocommit': True,
-        },
+            'autocommit': True,
+            'sql_mode': 'traditional',
+            },
     }
 
 }
