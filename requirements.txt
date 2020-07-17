@@ -3,6 +3,8 @@ attrs==19.3.0
 cached-property==1.5.1
 certifi==2020.6.20
 chardet==3.0.4
+cycler==0.10.0
+Cython==0.29.21
 defusedxml==0.6.0
 Django==1.11.29
 django-classy-tags==1.0.0
@@ -33,19 +35,31 @@ iso-639==0.4.5
 iso3166==1.0.1
 iso8601==0.1.12
 isodate==0.6.0
+joblib==0.16.0
+kiwisolver==1.2.0
 lxml==4.5.1
 m3u8==0.6.0
 m3u8-dl==0.2.1
 m3u8downloader==0.8.6
+matplotlib==3.2.1
+numpy==1.19.0
+opencv-python==4.3.0.36
 Pillow==7.1.2
 pycryptodome==3.9.8
+# Editable install with no version control (pylivestream==1.10.0)
+-e /Users/samerk/Desktop/Work/youtube-video-list/PyLivestream-master/src
+pyparsing==2.4.7
 PySocks==1.7.1
+python-dateutil==2.8.1
 pytube3==9.6.4
 pytz==2020.1
 requests==2.21.0
 requests-toolbelt==0.9.1
+scikit-learn==0.23.1
+scipy==1.5.1
 six==1.15.0
 streamlink==1.4.1
+threadpoolctl==2.1.0
 typing-extensions==3.7.4.2
 Unidecode==1.1.1
 urllib3==1.24.3
