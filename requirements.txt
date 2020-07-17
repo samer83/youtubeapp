@@ -47,7 +47,7 @@ opencv-python==4.3.0.36
 Pillow==7.1.2
 pycryptodome==3.9.8
 # Editable install with no version control (pylivestream==1.10.0)
--e /Users/samerk/Desktop/Work/youtube-video-list/PyLivestream-master/src
+# -e /Users/samerk/Desktop/Work/youtube-video-list/PyLivestream-master/src
 pyparsing==2.4.7
 PySocks==1.7.1
 python-dateutil==2.8.1
