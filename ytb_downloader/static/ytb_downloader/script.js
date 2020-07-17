@@ -8,7 +8,7 @@ $(function() {
         'url'      : $('#inputurl').val(),
     };
     $.ajax({
-        url:"/api/downloader/youtube/",
+        url:"/api/downloader/youtube2/",
         async:true,
         headers:{"X-CSRFToken": $crf_token},
         dataType: "json",
@@ -17,10 +17,13 @@ $(function() {
         success: function( data ) {
             if (data['error'] == "0"){
                 var name = data['name']
+                $('#video_result').text(name)
+                $("#video_link").attr("href", data['url'])
+
                 // window.open('/static/' + name)
-                $.fileDownload('/static/' + name)
-                .done(function () { alert('File download a success!'); })
-                .fail(function () { alert('File download failed!'); });
+                // $.fileDownload('/static/' + name)
+                // .done(function () { alert('File download a success!'); })
+                // .fail(function () { alert('File download failed!'); });
 
 
             }

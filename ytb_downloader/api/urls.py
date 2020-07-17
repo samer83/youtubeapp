@@ -8,6 +8,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 urlpatterns = [
 
     url('youtube/', views.download_youtube),
+    url('youtube2/', views.get_youtube_2),
     
 ]
 

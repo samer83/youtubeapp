@@ -120,3 +120,50 @@ def youtube_stream3(request):
 
 
 
+
+@api_view(['GET', 'POST'])
+@permission_classes((permissions.AllowAny,))
+def get_youtube_2(request):
+
+    dataArray = []
+    url = request.POST.get('url') 
+    # youtube_link = 'https://www.youtube.com/trtarabi/live'
+    data = {}
+    url_read = ''
+    video_url = ''
+    error = '1'
+    try:
+        ydl = youtube_dl.YoutubeDL({'outtmpl': '%(id)s%(ext)s'})
+        # youtube_link = request.GET.get('link')
+        with ydl:
+            result = ydl.extract_info(
+                url,
+                download=False # We just want to extract the info
+            )
+
+        if 'entries' in result:
+            # Can be a playlist or a list of videos
+            video = result['entries'][0]
+        else:
+            # Just a video
+            video = result
+        # import numpy as np
+        # arr = np.array(video['formats'])
+        mp4_array = [a for a in video['formats'] if a['ext'] in 'mp4' and a['acodec'] is not 'none']
+        # mp4_array = video['formats']
+        # newarr = arr[mp4_array]
+
+
+
+        # for x in video['formats']:
+        #     print(x)
+
+        data['url'] = mp4_array[0]['url']
+        data['name'] = video['title']
+        data['error'] = '0'
+
+
+    except Exception as e:
+        pass
+
+    return Response(data)
