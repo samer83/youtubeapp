@@ -1,6 +1,10 @@
 # Object file
+!*
 /media
 /static
 __pycache__/
-settings/__init__.py
+settings/__init__.*
 
+
+.DS_Store
+__init__.py
