@@ -1,0 +1,6 @@
+# Object file
+/media
+/static
+__pycache__/
+settings/__init__.py
+
