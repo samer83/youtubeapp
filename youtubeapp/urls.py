@@ -14,6 +14,7 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'api/', include('livestreem.api.urls')),
+    url(r'api/downloader/', include('ytb_downloader.api.urls')),
     url(r'trt/', include('livestreem.urls')),
     url(r'^sitemap\.xml$', sitemap,
         {'sitemaps': {'cmspages': CMSSitemap}}),
@@ -23,7 +24,8 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     url(r'^admin/', admin.site.urls),  # NOQA
     url(r'^', include('cms.urls')),
-    url(r'^api/', include('livestreem.api.urls')),
+    # url(r'^api/', include('livestreem.api.urls')),
+    url(r'^downloader/', include('ytb_downloader.urls', namespace='ytb_downloader')),
 
 )
 
@@ -32,4 +34,5 @@ if settings.DEBUG:
     urlpatterns = [
         url(r'^media/(?P<path>.*)$', serve,
             {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
+        
         ] + staticfiles_urlpatterns() + urlpatterns

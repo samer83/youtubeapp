@@ -146,7 +146,9 @@ INSTALLED_APPS = [
     'djangocms_video',
     'rest_framework',
     'youtubeapp',
-    'livestreem'
+    'livestreem',
+    'ytb_downloader',
+    'rest_framework.authtoken'
 ]
 
 LANGUAGES = (

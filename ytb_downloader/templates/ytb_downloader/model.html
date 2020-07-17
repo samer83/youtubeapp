@@ -1,0 +1,26 @@
+    
+    {% load staticfiles %}
+    <link href="{% static 'ytb_downloader/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'ytb_downloader/stylesheet.css' %}" rel="stylesheet">
+    <script src="{% static 'ytb_downloader/script.js' %}"></script>
+    <div class="text-center">
+    
+    
+    <form class="form-inline my-2 my-lg-0" >
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
+
+<form class="form-signin" method="POST" action="{% url 'ytb_downloader:vdownload' %}">
+{% csrf_token %}
+      <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input type="text" id="inputurl" name="inputurl" class="form-control" placeholder="youtube url" required="" autofocus="">
+        
+      <button id="download" name="download" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
+    </form>
+
+    </div>
