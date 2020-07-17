@@ -71,7 +71,7 @@ print('BASE BASE')
 print(os.path.join(BASE_DIR, 'static'))
 STATICFILES_DIRS = ([
 os.path.join(BASE_DIR, 'static'),
-os.path.join(ENV_DIR, 'lib/python3.7/site-packages/django/contrib/admin/static/'),
+os.path.join(ENV_DIR, 'lib/python3.6/site-packages/django/contrib/admin/static/'),
 ])
 SITE_ID = 1
 
