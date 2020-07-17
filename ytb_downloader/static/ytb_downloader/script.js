@@ -17,7 +17,7 @@ $(function() {
         success: function( data ) {
             if (data['error'] == "0"){
                 var name = data['name']
-                window.open('http://localhost:8000/static/' + name)
+                window.open('/static/' + name)
 
             }
         },
