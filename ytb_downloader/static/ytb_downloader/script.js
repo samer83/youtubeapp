@@ -22,7 +22,7 @@ $(function() {
                 .done(function () { alert('File download a success!'); })
                 .fail(function () { alert('File download failed!'); });
 
-                
+
             }
         },
         error: function(data){
@@ -30,5 +30,21 @@ $(function() {
         }
     });
 });
+
+
+
+function download(filename, text) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:video/mp4;' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+  
+    element.style.display = 'none';
+    document.body.appendChild(element);
+  
+    element.click();
+  
+    document.body.removeChild(element);
+  }
+  
 
 });
