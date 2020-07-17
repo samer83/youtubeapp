@@ -17,8 +17,12 @@ $(function() {
         success: function( data ) {
             if (data['error'] == "0"){
                 var name = data['name']
-                window.open('/static/' + name)
+                // window.open('/static/' + name)
+                $.fileDownload('/static/' + name)
+                .done(function () { alert('File download a success!'); })
+                .fail(function () { alert('File download failed!'); });
 
+                
             }
         },
         error: function(data){
