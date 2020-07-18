@@ -138,7 +138,8 @@ def get_youtube_2(request):
         with ydl:
             result = ydl.extract_info(
                 url,
-                download=False # We just want to extract the info
+                download=False, # We just want to extract the info,
+                
             )
 
         if 'entries' in result:
@@ -161,6 +162,7 @@ def get_youtube_2(request):
         # data['url'] = mp4_array[0]['url']
         data['name'] = video['title']
         data['error'] = '0'
+        data['thumbnail'] = video['thumbnail']
         data['arr'] = mp4_array
 
 

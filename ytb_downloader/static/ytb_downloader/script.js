@@ -18,12 +18,38 @@ $(function() {
             if (data['error'] == "0"){
                 var name = data['name']
                 $('#video_result').text(name)
+                var test_url = '',
+                    player = videojs('my-player'),
+                    sources = [];
+                $("#video_result").append("<br /> <img class='m-auto' width='300px' src='" + data['thumbnail'] + "' />" )
                 $.each(data['arr'], function( index, value ) {
                     $("#video_result").append('<br/><a href="'+value.url+'" target="blank" >' + value.ext + " - " +   value.format_note + "</a>");
+                    
+                    
+                    if (value.ext == 'mp4')
+                        
+                    {type_current = "video/"// else 
+                    //     type_current = "video/"
 
+                    type_final = type_current + value.ext
+                    sources.push ({type: type_final, src: value.url})}
+                    // player.src.
                     // $("#video_link").attr("href", value.url)
                     // $("#video_link").html( value.ext + " - " +   value.format_note)
                   });
+
+                // var options = {};
+                
+                //$('#my-player').removeClass( ["hide"] )
+                player.poster (data['thumbnail'])
+                player.src(
+                    [sources]
+                );
+
+                // player.src(sources);
+
+               
+
                 // for (x in data['arr'])
                 // {   console.log(x)
                     
