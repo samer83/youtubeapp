@@ -149,7 +149,7 @@ def get_youtube_2(request):
             video = result
         # import numpy as np
         # arr = np.array(video['formats'])
-        mp4_array = [a for a in video['formats'] if a['ext'] in 'mp4' and a['acodec'] is not 'none']
+        mp4_array = [a for a in video['formats'] if a['acodec'] is not 'none' ]
         # mp4_array = video['formats']
         # newarr = arr[mp4_array]
 
@@ -158,9 +158,10 @@ def get_youtube_2(request):
         # for x in video['formats']:
         #     print(x)
 
-        data['url'] = mp4_array[0]['url']
+        # data['url'] = mp4_array[0]['url']
         data['name'] = video['title']
         data['error'] = '0'
+        data['arr'] = mp4_array
 
 
     except Exception as e:

@@ -18,7 +18,18 @@ $(function() {
             if (data['error'] == "0"){
                 var name = data['name']
                 $('#video_result').text(name)
-                $("#video_link").attr("href", data['url'])
+                $.each(data['arr'], function( index, value ) {
+                    $("#video_result").append('<br/><a href="'+value.url+'" target="blank" >' + value.ext + " - " +   value.format_note + "</a>");
+
+                    // $("#video_link").attr("href", value.url)
+                    // $("#video_link").html( value.ext + " - " +   value.format_note)
+                  });
+                // for (x in data['arr'])
+                // {   console.log(x)
+                    
+                //     $("#video_link").attr("href", x['url'])
+                //     $("#video_link").attr("text", x['ext'])
+                // }
 
                 // window.open('/static/' + name)
                 // $.fileDownload('/static/' + name)
