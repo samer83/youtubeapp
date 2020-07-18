@@ -154,6 +154,8 @@ def get_youtube_2(request):
         # mp4_array = video['formats']
         # newarr = arr[mp4_array]
         thmb_array = [a for a in video['thumbnails'] if a['url'].find('jpg')!=-1  ]
+        thumb_url = thmb_array[-1]['url']
+        thumb_url = thumb_url[:thumb_url.find('jpg')] + 'jpg'
 
         # for x in video['formats']:
         #     print(x)
@@ -161,7 +163,7 @@ def get_youtube_2(request):
         # data['url'] = mp4_array[0]['url']
         data['name'] = video['title']
         data['error'] = '0'
-        data['thumbnail'] = thmb_array[-1]['url']
+        data['thumbnail'] = thumb_url
         data['arr'] = mp4_array
 
 
