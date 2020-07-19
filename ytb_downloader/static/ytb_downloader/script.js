@@ -1,9 +1,10 @@
 $(function() {
     
     $('#download').click(function(e) {
-        e.preventDefault()
+    e.preventDefault()
+    $("#download").html('<i class="fa fa-spinner fa-spin"></i>Loading');
     var $crf_token = $('[name="csrfmiddlewaretoken"]').attr('value');
-
+    
     let formData = {
         'url'      : $('#inputurl').val(),
     };
@@ -25,6 +26,7 @@ $(function() {
                 $.each(data['arr'], function( index, value ) {
                     $("#video_result").append('<br/><a href="'+value.url+'" target="blank" >' + value.ext + " - " +   value.format_note + "</a>");
                     
+
                     
                     if (value.ext == 'mp4')
                         
@@ -45,6 +47,10 @@ $(function() {
                 player.src(
                     [sources]
                 );
+
+                $("#download").html('Download');
+                $("#inputurl").val('');
+
 
                 // player.src(sources);
 
