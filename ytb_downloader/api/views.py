@@ -127,49 +127,50 @@ def get_youtube_2(request):
 
     dataArray = []
     url = request.POST.get('url') 
-    url = url.partition("&list")[0] 
+    if url:
+        url = url.partition("&list")[0] 
 
-    # youtube_link = 'https://www.youtube.com/trtarabi/live'
-    data = {}
-    url_read = ''
-    video_url = ''
-    error = '1'
-    try:
-        ydl = youtube_dl.YoutubeDL({'outtmpl': '%(id)s%(ext)s'})
-        # youtube_link = request.GET.get('link')
-        with ydl:
-            result = ydl.extract_info(
-                url,
-                download=False, # We just want to extract the info,
-                
-            )
+        # youtube_link = 'https://www.youtube.com/trtarabi/live'
+        data = {}
+        url_read = ''
+        video_url = ''
+        error = '1'
+        try:
+            ydl = youtube_dl.YoutubeDL({'outtmpl': '%(id)s%(ext)s'})
+            # youtube_link = request.GET.get('link')
+            with ydl:
+                result = ydl.extract_info(
+                    url,
+                    download=False, # We just want to extract the info,
+                    
+                )
 
-        if 'entries' in result:
-            # Can be a playlist or a list of videos
-            video = result['entries'][0]
-        else:
-            # Just a video
-            video = result
-        # import numpy as np
-        # arr = np.array(video['formats'])
-        mp4_array = [a for a in video['formats'] if a['acodec'] is not 'none' ]
-        # mp4_array = video['formats']
-        # newarr = arr[mp4_array]
-        thmb_array = [a for a in video['thumbnails'] if a['url'].find('jpg')!=-1  ]
-        thumb_url = thmb_array[-1]['url']
-        thumb_url = thumb_url[:thumb_url.find('jpg')] + 'jpg'
+            if 'entries' in result:
+                # Can be a playlist or a list of videos
+                video = result['entries'][0]
+            else:
+                # Just a video
+                video = result
+            # import numpy as np
+            # arr = np.array(video['formats'])
+            mp4_array = [a for a in video['formats'] if a['acodec'] is not 'none' ]
+            # mp4_array = video['formats']
+            # newarr = arr[mp4_array]
+            thmb_array = [a for a in video['thumbnails'] if a['url'].find('jpg')!=-1  ]
+            thumb_url = thmb_array[-1]['url']
+            thumb_url = thumb_url[:thumb_url.find('jpg')] + 'jpg'
 
-        # for x in video['formats']:
-        #     print(x)
+            # for x in video['formats']:
+            #     print(x)
 
-        # data['url'] = mp4_array[0]['url']
-        data['name'] = video['title']
-        data['error'] = '0'
-        data['thumbnail'] = thumb_url
-        data['arr'] = mp4_array
+            # data['url'] = mp4_array[0]['url']
+            data['name'] = video['title']
+            data['error'] = '0'
+            data['thumbnail'] = thumb_url
+            data['arr'] = mp4_array
 
 
-    except Exception as e:
-        pass
+        except Exception as e:
+            pass
 
     return Response(data)

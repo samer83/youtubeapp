@@ -5,6 +5,9 @@ $(function() {
     $("#download").html('<i class="fa fa-spinner fa-spin"></i>Loading');
     var $crf_token = $('[name="csrfmiddlewaretoken"]').attr('value');
     
+    if ($('#inputurl').val() == '')
+        return
+        
     let formData = {
         'url'      : $('#inputurl').val(),
     };
