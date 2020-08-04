@@ -16,7 +16,7 @@ $(function() {
     if (url.includes('youtube'))
     {
     $.ajax({
-        url:"/api/downloader/linkedin/",
+        url:"/api/downloader/youtube2/",
         async:true,
         headers:{"X-CSRFToken": $crf_token},
         dataType: "json",
