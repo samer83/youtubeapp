@@ -8,12 +8,15 @@ $(function() {
         return
 
     $("#download").html('<i class="fa fa-spinner fa-spin"></i>Loading');
-    
+    var url = $('#inputurl').val();
+
     let formData = {
-        'url'      : $('#inputurl').val(),
+        'url'      : url
     };
+    if (url.includes('youtube'))
+    {
     $.ajax({
-        url:"/api/downloader/youtube2/",
+        url:"/api/downloader/linkedin/",
         async:true,
         headers:{"X-CSRFToken": $crf_token},
         dataType: "json",
@@ -79,6 +82,66 @@ $(function() {
             console.log(data)
         }
     });
+    }
+
+    else 
+    if (url.includes("linked"))
+    {
+        $.ajax({
+            url:"/api/downloader/linkedin/",
+            async:true,
+            headers:{"X-CSRFToken": $crf_token},
+            dataType: "json",
+            type: "POST",
+            data: formData,
+            success: function( data ) {
+                if (data['error'] == "0"){
+                    var name = data['name']
+                    // $('#video_result').text("download Linkedin Video")
+                    var test_url = '',
+                        player = videojs('my-player'),
+                        sources = [];
+                    $("#video_result").append("<br /> <a href='"+data["url"]+"' target='blank' > Click Here to Download <br /><img class='m-auto' width='300px' src='" + data['thumbnail'] + "' /></a>" )
+                        
+    
+    
+                    // var options = {};
+                    
+                    //$('#my-player').removeClass( ["hide"] )
+                    player.poster (data['thumbnail'])
+                    player.src(
+                        [sources]
+                    );
+    
+                    $("#download").html('Download');
+                    $("#inputurl").val('');
+    
+    
+                    // player.src(sources);
+    
+                   
+    
+                    // for (x in data['arr'])
+                    // {   console.log(x)
+                        
+                    //     $("#video_link").attr("href", x['url'])
+                    //     $("#video_link").attr("text", x['ext'])
+                    // }
+    
+                    // window.open('/static/' + name)
+                    // $.fileDownload('/static/' + name)
+                    // .done(function () { alert('File download a success!'); })
+                    // .fail(function () { alert('File download failed!'); });
+    
+    
+                }
+            },
+            error: function(data){
+                console.log(data)
+            }
+        });
+    }
+
 });
 
 

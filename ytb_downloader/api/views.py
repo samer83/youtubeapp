@@ -128,7 +128,7 @@ def get_youtube_2(request):
     dataArray = []
     url = request.POST.get('url') 
     if url:
-        url = url.partition("&list")[0] 
+        url = url.partition("&")[0] 
 
         # youtube_link = 'https://www.youtube.com/trtarabi/live'
         data = {}
