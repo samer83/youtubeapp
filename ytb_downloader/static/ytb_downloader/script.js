@@ -13,7 +13,7 @@ $(function() {
     let formData = {
         'url'      : url
     };
-    if (url.includes('youtube'))
+    if (url.includes('youtu'))
     {
     $.ajax({
         url:"/api/downloader/youtube2/",
