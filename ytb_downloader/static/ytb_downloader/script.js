@@ -8,87 +8,25 @@ $(function() {
         return
 
     $("#download").html('<i class="fa fa-spinner fa-spin"></i>Loading');
-    var url = $('#inputurl').val();
-
-    let formData = {
-        'url'      : url
-    };
+    let url = $('#inputurl').val(),
+        api_url = "",
+        formData = {
+            'url'      : url
+        };
     if (url.includes('youtu'))
     {
-    $.ajax({
-        url:"/api/downloader/youtube2/",
-        async:true,
-        headers:{"X-CSRFToken": $crf_token},
-        dataType: "json",
-        type: "POST",
-        data: formData,
-        success: function( data ) {
-            if (data['error'] == "0"){
-                var name = data['name']
-                $('#video_result').text(name)
-                var test_url = '',
-                    player = videojs('my-player'),
-                    sources = [];
-                $("#video_result").append("<br /> <img class='m-auto' width='300px' src='" + data['thumbnail'] + "' />" )
-                $.each(data['arr'], function( index, value ) {
-                    $("#video_result").append('<br/><a href="'+value.url+'" target="blank" >' + value.ext + " - " +   value.format_note + "</a>");
-                    
-
-                    
-                    if (value.ext == 'mp4')
-                        
-                    {type_current = "video/"// else 
-                    //     type_current = "video/"
-
-                    type_final = type_current + value.ext
-                    sources.push ({type: type_final, src: value.url})}
-                    // player.src.
-                    // $("#video_link").attr("href", value.url)
-                    // $("#video_link").html( value.ext + " - " +   value.format_note)
-                  });
-
-                // var options = {};
-                
-                //$('#my-player').removeClass( ["hide"] )
-                player.poster (data['thumbnail'])
-                player.src(
-                    [sources]
-                );
-
-                $("#download").html('Download');
-                $("#inputurl").val('');
-
-
-                // player.src(sources);
-
-               
-
-                // for (x in data['arr'])
-                // {   console.log(x)
-                    
-                //     $("#video_link").attr("href", x['url'])
-                //     $("#video_link").attr("text", x['ext'])
-                // }
-
-                // window.open('/static/' + name)
-                // $.fileDownload('/static/' + name)
-                // .done(function () { alert('File download a success!'); })
-                // .fail(function () { alert('File download failed!'); });
-
-
-            }
-        },
-        error: function(data){
-            console.log(data)
-        }
-    });
+        api_url = "/api/downloader/youtube2/";
+        state = "youtube"
     }
-
     else 
     if (url.includes("linked"))
     {
+        api_url = "/api/downloader/linkedin/"
+        state = "linkedin"
+    }
+
         $.ajax({
-            url:"/api/downloader/linkedin/",
+            url:api_url,
             async:true,
             headers:{"X-CSRFToken": $crf_token},
             dataType: "json",
@@ -96,43 +34,62 @@ $(function() {
             data: formData,
             success: function( data ) {
                 if (data['error'] == "0"){
-                    var name = data['name']
-                    // $('#video_result').text("download Linkedin Video")
-                    var test_url = '',
-                        player = videojs('my-player'),
-                        sources = [];
-                    $("#video_result").append("<br /> <a href='"+data["url"]+"' target='blank' > Click Here to Download <br /><img class='m-auto' width='300px' src='" + data['thumbnail'] + "' /></a>" )
+
+                    if (state == "youtube")
+                    {
+                        $('#video_result').text(data['name'])
+                        var test_url = '',
+                            player = videojs('my-player'),
+                            sources = [];
+                            $("#video_result").append("<br /> <img class='m-auto' width='300px' src='" + data['thumbnail'] + "' />" )
+                            $.each(data['arr'], function( index, value ) {
+                            $("#video_result").append('<br/><a href="'+value.url+'" target="blank" >' + value.ext + " - " +   value.format_note + "</a>");
+                            
+
+                            if (value.ext == 'mp4')
+                                
+                            {type_current = "video/"// else 
+
+                            type_final = type_current + value.ext
+                            sources.push ({type: type_final, src: value.url})}
+                            
+                        });
                         
-    
-    
-                    // var options = {};
+                        player.poster (data['thumbnail'])
+                        player.src(
+                            [sources]
+                        );
+
+                        $("#download").html('Download');
+                        $("#inputurl").val('');
+
+
+                    }
+                    else
+                    if (state == "linkedin")
+                    {
+                        var name = data['name']
+                        // $('#video_result').text("download Linkedin Video")
+                        var test_url = '',
+                            player = videojs('my-player'),
+                            sources = [];
+                        $("#video_result").append("<br /> <a href='"+data["url"]+"' target='blank' > Click Here to Download <br /><img class='m-auto' width='300px' src='" + data['thumbnail'] + "' /></a>" )
+                            
+        
+        
+                        // var options = {};
+                        
+                        //$('#my-player').removeClass( ["hide"] )
+                        player.poster (data['thumbnail'])
+                        player.src(
+                            [sources]
+                        );
+        
+                        $("#download").html('Download');
+                        $("#inputurl").val('');
+                    }
                     
-                    //$('#my-player').removeClass( ["hide"] )
-                    player.poster (data['thumbnail'])
-                    player.src(
-                        [sources]
-                    );
-    
-                    $("#download").html('Download');
-                    $("#inputurl").val('');
-    
-    
-                    // player.src(sources);
-    
-                   
-    
-                    // for (x in data['arr'])
-                    // {   console.log(x)
-                        
-                    //     $("#video_link").attr("href", x['url'])
-                    //     $("#video_link").attr("text", x['ext'])
-                    // }
-    
-                    // window.open('/static/' + name)
-                    // $.fileDownload('/static/' + name)
-                    // .done(function () { alert('File download a success!'); })
-                    // .fail(function () { alert('File download failed!'); });
-    
+                
     
                 }
             },
@@ -140,7 +97,6 @@ $(function() {
                 console.log(data)
             }
         });
-    }
 
 });
 
