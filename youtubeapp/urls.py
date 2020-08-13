@@ -22,10 +22,12 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^admin/', admin.site.urls),  # NOQA
     url(r'^', include('cms.urls')),
     # url(r'^api/', include('livestreem.api.urls')),
     url(r'^downloader/', include('ytb_downloader.urls', namespace='ytb_downloader')),
+
 
 )
 

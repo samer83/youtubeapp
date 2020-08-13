@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load cms_tags menu_tags sekizai_tags staticfiles pageextensions_tags %}
+<!doctype html>
+
+{% block header %}{% endblock %}
+
+{% block submenu %}{% endblock %}
+{% block title %}{% page_attribute "page_title" %}{% endblock title %}
+{% block content %}
+<div class="page_title_image" style="background:url('{{request.current_page.pageextension.background.url}}')">
+	<div class="container">
+		<h1 class="title  text-white">{% page_attribute "page_title" %}</h1>
+		<h3 class="author">
+		<span class="text-capitalize">{{ request.current_page.pageextension.author.first_name }} {{ request.current_page.pageextension.author.last_name }} </span> on {{ request.current_page.creation_date | date:"D d M Y" }}</h3>
+	</div>
+</div>
+
+	<page>
+		{% placeholder "breadcumb" %}
+        <div class="container pt-4">
+		{% placeholder "content" %}
+        </div>
+	</page>
+{% endblock %}
+
+{%block footertop %}{% endblock %}
+
+{% block footer %}{% endblock%}

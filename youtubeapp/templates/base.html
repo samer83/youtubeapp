@@ -35,7 +35,7 @@
 		    <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href='{% static "/css/stylesheet.css" %}?v=902211' >
+        <link rel="stylesheet" href='{% static "youtubeapp/css/stylesheet.css" %}?v=92000200211' >
         <script src="{% static 'js/js.cookie.js' %}?v=10299" ></script>
         
 
@@ -44,16 +44,16 @@
     <body>
         {% cms_toolbar %}
         <!-- Image and text -->
-        <nav class="navbar navbar-light bg-light">
+        {% comment %} <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="#">
             <img src="/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
             Youtube Download
         </a>
-        </nav>
+        </nav> {% endcomment %}
 
-        <div class="container">
+        <div class="container-wide">
             <ul class="nav">
-                {% show_menu 0 100 100 100 %}
+                {% comment %} {% show_menu 0 100 100 100 %} {% endcomment %}
             </ul>
             {% block content %}{% endblock content %}
         </div>

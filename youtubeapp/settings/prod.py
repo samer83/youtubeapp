@@ -148,7 +148,11 @@ INSTALLED_APPS = [
     'youtubeapp',
     'livestreem',
     'ytb_downloader',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'pageextensions',
+    'ckeditor',
+    'ckeditor_uploader',
+    'm_text'
 ]
 
 LANGUAGES = (
@@ -232,3 +236,24 @@ THUMBNAIL_PROCESSORS = (
     'filer.thumbnail_processors.scale_and_crop_with_subject_location',
     'easy_thumbnails.processors.filters'
 )
+
+
+
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_BROWSE_SHOW_DIRS= True
+CKEDITOR_RESTRICT_USERS = False
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 400,
+        'width': 1200,
+    },
+}
+
+
+
+ACCOUNT_USER_MODEL_USERNAME_FIELD = 'admin'
+
