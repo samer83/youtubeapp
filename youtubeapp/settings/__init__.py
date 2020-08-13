@@ -1,5 +1,5 @@
 try:
-    from .dev import *
+    from .prod import *
 except ImportError:
     try:
         from .dev import *
